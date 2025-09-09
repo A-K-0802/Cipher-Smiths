@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Threat Dashboard - Security</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">⚡</div>
+    <div class="menu">
+      <a href="index.html" class="menu-btn">🏠</a>
+      <a href="analysis.html" class="menu-btn">📊</a>
+      <a href="monitoring.html" class="menu-btn">📡</a>
+      <a href="settings.html" class="menu-btn">⚙️</a>
+      <a href="security.html" class="menu-btn active">🛡️</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="title">Security</h2>
+      <input type="date" class="form-control form-control-sm">
+    </header>
+
+    <div class="row mb-4">
+      <div class="col-md-6 box"><h5 class="section-title">Vulnerabilities</h5>
+        <ul>
+          <li><span class="red">Critical:</span> SQL Injection</li>
+          <li><span class="yellow">High:</span> Weak Password Policy</li>
+          <li><span class="blue">Medium:</span> Open Ports</li>
+        </ul>
+      </div>
+      <div class="col-md-6 box">
+        <h5 class="section-title">Risk Matrix</h5>
+        <table class="table table-bordered text-center risk-matrix">
+          <thead>
+            <tr><th></th><th>Low</th><th>Medium</th><th>High</th><th>Critical</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Low Likelihood</th><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><th>Medium</th><td>-</td><td>⚠</td><td>-</td><td>-</td></tr>
+            <tr><th>High</th><td>-</td><td>-</td><td>🔥</td><td>-</td></tr>
+            <tr><th>Very High</th><td>-</td><td>-</td><td>-</td><td>🚨</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col box border-green">
+        <h5 class="section-title">Quick Actions</h5>
+        <button class="btn btn-danger btn-sm">Block IP</button>
+        <button class="btn btn-warning btn-sm">Isolate Server</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
