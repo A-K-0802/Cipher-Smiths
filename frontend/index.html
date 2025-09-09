@@ -1,51 +1,88 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>AI Threat Prioritizer — Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container py-3">
-      <h2 class="mb-4">🚨 AI Threat Prioritizer Dashboard</h2>
+<head>
+  <meta charset="utf-8">
+  <title>Cybersecurity Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">⚡</div>
+    <div class="menu">
+      <button class="menu-btn active">☰</button>
+      <button class="menu-btn">📊</button>
+      <button class="menu-btn">📡</button>
+      <button class="menu-btn">⚙️</button>
+      <button class="menu-btn">🛡️</button>
+    </div>
+  </div>
 
-      <div class="mb-3">
-        <button id="simulateBtn" class="btn btn-warning me-2">
-          Simulate Attack Ingest
-        </button>
-        <button id="refreshBtn" class="btn btn-secondary">Refresh Alerts</button>
+  <!-- Main content -->
+  <div class="main-content">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <h2>Overview</h2>
+      <div class="d-flex align-items-center">
+        <input type="date" class="form-control form-control-sm me-3">
+        <span class="avatar">👤</span>
       </div>
+    </header>
 
-      <!-- Alerts Table -->
-      <table class="table table-striped table-hover align-middle">
-        <thead class="table-dark">
-          <tr>
-            <th>Risk</th>
-            <th>Label</th>
-            <th>Event Type</th>
-            <th>Source IP</th>
-            <th>Timestamp</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="alertsTable"></tbody>
-      </table>
-
-      <!-- Selected Alert Detail -->
-      <div class="card mt-4 shadow-sm">
-        <div class="card-header bg-dark text-white">Selected Alert Details</div>
-        <div class="card-body">
-          <pre id="detail" class="detail-box">Click "View" on any alert</pre>
-        </div>
+    <!-- Stats Row -->
+    <div class="row text-center mb-4">
+      <div class="col box border-blue">
+        <h5>Domains</h5>
+        <p class="stat">347</p>
+      </div>
+      <div class="col box border-red">
+        <h5>IP ranges</h5>
+        <p class="stat">528</p>
+      </div>
+      <div class="col box border-yellow">
+        <h5>Subdomains</h5>
+        <p class="stat">153</p>
+      </div>
+      <div class="col box border-green">
+        <h5>Issues Found</h5>
+        <p class="stat">23</p>
       </div>
     </div>
 
-    <script src="app.js"></script>
-  </body>
-</html>
+    <!-- Middle Row -->
+    <div class="row mb-4">
+      <div class="col box border-cyan">62<br><small>Tracked Users</small></div>
+      <div class="col box border-pink">53<br><small>Violations</small></div>
+      <div class="col box border-orange">16<br><small>Connections</small></div>
+      <div class="col box border-purple">9<br><small>Pending</small></div>
+    </div>
 
+    <!-- Bottom Row -->
+    <div class="row">
+      <div class="col box text-start border-blue">
+        <h6>Ongoing Trials</h6>
+        <p>Dom.clobbering <span class="progress-bar blue"></span></p>
+        <p>XMLEntities <span class="progress-bar red"></span></p>
+        <p>SQL Injections <span class="progress-bar yellow"></span></p>
+      </div>
+      <div class="col box border-cyan">
+        <h6>Reporting</h6>
+        <p><span class="highlight">147</span> <small>Workload</small></p>
+        <p><span class="highlight">271</span> <small>S3 Bucket</small></p>
+        <p><span class="highlight">351</span> <small>VPC</small></p>
+        <p><span class="highlight">162</span> <small>Security Checks</small></p>
+      </div>
+      <div class="col box text-start border-red">
+        <h6>Recent Issues</h6>
+        <p>✔ User issue <small>- Yesterday</small></p>
+        <p>✔ Server issue <small>- 10 Sep 2023</small></p>
+        <button class="btn btn-sm btn-primary">Show All</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
