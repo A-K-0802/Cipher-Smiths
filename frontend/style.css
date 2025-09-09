@@ -1,115 +1,126 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  display: flex;
-  background: #121212;
-  color: #f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0; display: flex;
+  background: #f5f5f5; color: #222;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-.sidebar {
-  width: 70px;
-  background: #1f1f1f;
-  padding: 15px 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+h1,h2,h3,h4,h5,h6 { margin-bottom: 12px; }
+.sidebar { width: 70px; background: #e0e0e0; height: 100vh; position: fixed; padding: 15px 0; display: flex; flex-direction: column; align-items: center; }
+.sidebar .logo { font-size: 26px; margin-bottom: 25px; color: #0d6efd; }
+.menu { display:flex; flex-direction:column; gap:12px; }
+.menu-btn { display:block; padding:14px; font-size:18px; border-radius:12px; text-align:center; background:#d0d0d0; color:#333; transition:all 0.2s ease; }
+.menu-btn:hover { background:#c0c0c0; color:#000; transform:scale(1.05); }
+.menu-btn.active { background:#0d6efd; color:#fff; box-shadow:0 0 12px rgba(13,110,253,0.6); }
+
+.main-content { margin-left:80px; padding:20px; width:calc(100% - 80px); }
+header { border-bottom:1px solid #ccc; padding-bottom:10px; margin-bottom:15px; }
+.title { font-size:24px; font-weight:600; }
+.live { color:#28a745; font-weight:bold; margin-left:10px; }
+.section-title { font-size:16px; font-weight:600; margin-bottom:10px; border-left:4px solid #0d6efd; padding-left:8px; color:#111; }
+.box { background:#fff; padding:15px; margin-bottom:15px; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.1); transition:transform 0.2s ease, box-shadow 0.2s ease; height:100%; }
+.box:hover { transform:translateY(-3px); box-shadow:0 5px 16px rgba(0,0,0,0.2); }
+.stat { font-size:22px; font-weight:bold; background:linear-gradient(90deg,#00d4ff,#007bff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+canvas { width:100%!important; height:220px!important; }
+.list-group-item { border:none; padding:6px 10px; background:#fafafa; color:#222; }
+.table-dark { background:#f0f0f0; color:#222; }
+.border-blue{border-left:5px solid #007bff;} .border-red{border-left:5px solid #ff4d4d;} .border-yellow{border-left:5px solid #ffcc00;} .border-green{border-left:5px solid #28a745;}
+.risk-matrix th { background:#e0e0e0; color:#111; }
+.risk-matrix td { background:#fafafa; }
+
+/* Dark Mode */
+body.dark-mode { background:#121212; color:#eee; }
+body.dark-mode .sidebar { background:#1e1e1e; }
+body.dark-mode .menu-btn { background:#2b2b2b; color:#aaa; }
+body.dark-mode .menu-btn:hover { background:#3a3a3a; color:#fff; }
+body.dark-mode .box { background:#1f1f1f; color:#eee; }
+body.dark-mode .section-title { color:#fff; border-left:4px solid #0dcaf0; }
+body.dark-mode .list-group-item { background:#1a1a1a; color:#eee; }
+body.dark-mode .table-dark { background:#1a1a1a; color:#eee; }
+body.dark-mode .risk-matrix th { background:#2b2b2b; color:#fff; }
+body.dark-mode .risk-matrix td { background:#1a1a1a; }
+/* ============================
+   Cool Animations & UI Effects
+   ============================ */
+
+/* Smooth fade-in for page load */
+body {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.sidebar .logo {
-  font-size: 26px;
-  margin-bottom: 25px;
-}
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.menu-btn {
-  background: #2b2b2b;
-  border: none;
-  color: #f5f5f5;
-  font-size: 20px;
-  padding: 12px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.menu-btn:hover {
-  background: #3a3a3a;
-  transform: scale(1.05);
-}
-
-.menu-btn.active {
-  background: #007bff;
-  box-shadow: 0 0 10px #007bff88;
-}
-
-.main-content {
-  flex: 1;
-  padding: 20px;
-}
-
-header {
-  border-bottom: 1px solid #333;
-  padding-bottom: 10px;
-}
-
+/* Hover glow on boxes */
 .box {
-  background: #2c2c2c;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+  position: relative;
+  overflow: hidden;
+}
+.box::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.6s;
+}
+.box:hover::after {
+  left: 100%;
+}
+
+/* Buttons hover bounce */
+button, .btn, .menu-btn {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.box:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+button:hover, .btn:hover, .menu-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
 
-.stat {
-  font-size: 28px;
-  font-weight: bold;
-  background: linear-gradient(90deg, #00d4ff, #007bff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Active menu button glowing pulse */
+.menu-btn.active {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 6px rgba(13,110,253,0.7); }
+  50% { box-shadow: 0 0 20px rgba(13,110,253,1); }
+  100% { box-shadow: 0 0 6px rgba(13,110,253,0.7); }
 }
 
-.highlight {
-  font-size: 20px;
-  font-weight: bold;
-  color: #00ffcc;
-}
-
-.avatar {
-  background: #333;
-  border-radius: 50%;
-  padding: 8px 12px;
-  font-size: 18px;
-}
-
-.progress-bar {
+/* Section titles stylish underline */
+.section-title {
+  position: relative;
   display: inline-block;
-  height: 8px;
-  width: 60px;
-  border-radius: 4px;
-  margin-left: 10px;
+}
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40%;
+  height: 3px;
+  background: linear-gradient(90deg, #0d6efd, #00d4ff);
+  border-radius: 2px;
+  animation: expand 1s ease;
+}
+@keyframes expand {
+  from { width: 0; }
+  to { width: 40%; }
 }
 
-.blue { background: #007bff; }
-.red { background: #ff4d4d; }
-.yellow { background: #ffcc00; }
+/* Risk Matrix cells hover */
+.risk-matrix td {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+.risk-matrix td:hover {
+  transform: scale(1.1);
+  background-color: rgba(13,110,253,0.2);
+}
 
-.border-blue   { border-top: 4px solid #007bff; }
-.border-red    { border-top: 4px solid #ff4d4d; }
-.border-yellow { border-top: 4px solid #ffcc00; }
-.border-green  { border-top: 4px solid #28a745; }
-.border-cyan   { border-top: 4px solid #00ffff; }
-.border-pink   { border-top: 4px solid #ff66cc; }
-.border-orange { border-top: 4px solid #ff9900; }
-.border-purple { border-top: 4px solid #a855f7; }
+/* Dark mode glow effect */
+body.dark-mode .box:hover {
+  box-shadow: 0 6px 18px rgba(0, 255, 255, 0.2);
+}

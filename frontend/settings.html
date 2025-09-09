@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Threat Dashboard - Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">⚡</div>
+    <div class="menu">
+      <a href="index.html" class="menu-btn">🏠</a>
+      <a href="analysis.html" class="menu-btn">📊</a>
+      <a href="monitoring.html" class="menu-btn">📡</a>
+      <a href="settings.html" class="menu-btn active">⚙️</a>
+      <a href="security.html" class="menu-btn">🛡️</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="title">Settings</h2>
+      <input type="date" class="form-control form-control-sm">
+    </header>
+    <div class="row">
+      <div class="col-md-6 box border-blue">
+        <h5 class="section-title">Preferences</h5>
+        <label><input type="checkbox" checked> Notifications</label><br>
+        <label><input type="checkbox"> Auto-refresh Data</label><br>
+        <label class="mt-2"><input type="checkbox" id="darkModeToggle"> Dark Mode</label>
+      </div>
+      <div class="col-md-6 box border-yellow">
+        <h5 class="section-title">Backend Controls</h5>
+        <button class="btn btn-danger btn-sm">Restart AI Engine</button>
+        <button class="btn btn-warning btn-sm">Flush Logs</button>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
