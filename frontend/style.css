@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  background: #121212;
+  color: #f5f5f5;
+}
+
+.sidebar {
+  width: 70px;
+  background: #1f1f1f;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar .logo {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-btn {
+  background: #2b2b2b;
+  border: none;
+  color: #f5f5f5;
+  font-size: 20px;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-btn:hover {
+  background: #3a3a3a;
+  transform: scale(1.05);
+}
+
+.menu-btn.active {
+  background: #007bff;
+  box-shadow: 0 0 10px #007bff88;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+header {
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.box {
+  background: #2c2c2c;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.8);
+}
+
+.stat {
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00d4ff, #007bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.highlight {
+  font-size: 20px;
+  font-weight: bold;
+  color: #00ffcc;
+}
+
+.avatar {
+  background: #333;
+  border-radius: 50%;
+  padding: 8px 12px;
+  font-size: 18px;
+}
+
+.progress-bar {
+  display: inline-block;
+  height: 8px;
+  width: 60px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.blue { background: #007bff; }
+.red { background: #ff4d4d; }
+.yellow { background: #ffcc00; }
+
+.border-blue   { border-top: 4px solid #007bff; }
+.border-red    { border-top: 4px solid #ff4d4d; }
+.border-yellow { border-top: 4px solid #ffcc00; }
+.border-green  { border-top: 4px solid #28a745; }
+.border-cyan   { border-top: 4px solid #00ffff; }
+.border-pink   { border-top: 4px solid #ff66cc; }
+.border-orange { border-top: 4px solid #ff9900; }
+.border-purple { border-top: 4px solid #a855f7; }
