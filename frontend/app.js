@@ -115,3 +115,126 @@ if (document.getElementById("miniChart")) {
     }
   });
 }
+
+
+
+const analyzeBtn = document.getElementById("analyzeBtn");
+const fileInput = document.getElementById("fileInput");
+const uploadStatus = document.getElementById("uploadStatus");
+
+if (analyzeBtn) {
+  analyzeBtn.addEventListener("click", async () => {
+    const file = fileInput.files[0];
+    if (!file) {
+      uploadStatus.innerHTML = "<span style='color:red;'>Please select a CSV file first.</span>";
+      return;
+    }
+
+    let formData = new FormData();
+    formData.append("file", file);
+
+    uploadStatus.innerHTML = "⏳ Uploading and analyzing...";
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/predict/", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log("Backend response:", data);
+
+      uploadStatus.innerHTML = `✅ Analysis Complete: 
+        ${data.summary.attacks_detected} attacks found 
+        out of ${data.summary.total_events} events.`;
+
+      // Render results dynamically
+      renderResultsTable(data.results);
+      renderCharts(data.results);
+
+    } catch (err) {
+      console.error(err);
+      uploadStatus.innerHTML = "<span style='color:red;'>Error connecting to backend.</span>";
+    }
+  });
+}
+
+function renderResultsTable(results) {
+  const container = document.getElementById("resultsTable");
+  if (!container) return;
+
+  let tableHTML = `
+    <table border="1" cellpadding="6">
+      <thead>
+        <tr>
+          <th>Event ID</th>
+          <th>Destination Port</th>
+          <th>Service</th>
+          <th>Protocol</th>
+          <th>Prediction</th>
+          <th>Confidence</th>
+          <th>Risk Score</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  results.slice(0, 50).forEach(r => {
+    tableHTML += `
+      <tr style="background:${r['Risk Score']==='HIGH' ? '#ffcccc':'#ccffcc'};">
+        <td>${r["Event ID"]}</td>
+        <td>${r["Destination Port"]}</td>
+        <td>${r["Service"]}</td>
+        <td>${r["Protocol"]}</td>
+        <td>${r["Prediction"]}</td>
+        <td>${r["Confidence"]}</td>
+        <td>${r["Risk Score"]}</td>
+      </tr>`;
+  });
+
+  tableHTML += "</tbody></table>";
+  container.innerHTML = tableHTML;
+}
+
+function renderCharts(results) {
+  // Count attack types
+  const attackCount = results.filter(r => r.Prediction === "Attack").length;
+  const normalCount = results.length - attackCount;
+
+  // Pie Chart
+  if (document.getElementById("pieChart")) {
+    new Chart(document.getElementById("pieChart"), {
+      type: 'pie',
+      data: {
+        labels: ["Normal", "Attack"],
+        datasets: [{
+          data: [normalCount, attackCount],
+          backgroundColor: ["#28a745","#ff4d4d"]
+        }]
+      }
+    });
+  }
+
+  // Bar Chart (top risky ports)
+  let portCounts = {};
+  results.forEach(r => {
+    if (r.Prediction === "Attack") {
+      portCounts[r["Destination Port"]] = (portCounts[r["Destination Port"]] || 0) + 1;
+    }
+  });
+
+  const topPorts = Object.entries(portCounts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  if (document.getElementById("barChart")) {
+    new Chart(document.getElementById("barChart"), {
+      type: 'bar',
+      data: {
+        labels: topPorts.map(x => x[0]),
+        datasets: [{
+          label: "Attacks",
+          data: topPorts.map(x => x[1]),
+          backgroundColor:"#ff6600"
+        }]
+      }
+    });
+  }
+}

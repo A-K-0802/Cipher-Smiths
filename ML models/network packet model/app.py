@@ -181,7 +181,7 @@ if uploaded_file is not None:
         results_df = pd.DataFrame(results)
 
         # --- Display Dashboard ---
-        st.subheader("🚨 Real-Time Alerts")
+        st.subheader(" Real-Time Alerts")
         
         def color_risk(val):
             color = 'green' if val == 'LOW' else 'orange' if val == 'MEDIUM' else 'red'
@@ -189,7 +189,7 @@ if uploaded_file is not None:
         
         st.dataframe(results_df.style.applymap(color_risk, subset=['Risk Score']))
 
-        st.subheader("📜 SOAR Automated Response History")
+        st.subheader(" SOAR Automated Response History")
         if SOAR_HISTORY:
             for item in reversed(SOAR_HISTORY):
                 st.info(item)
