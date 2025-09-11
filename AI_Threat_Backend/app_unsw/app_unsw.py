@@ -156,7 +156,7 @@ from models.model_utils import load_models
 app = FastAPI(title="UNSW-NB15 Threat Detection API")
 
 # --- Load model + columns ---
-MODEL_PATH = os.path.join("data", "supervised_xgb_unsw.joblib")
+MODEL_PATH = os.path.join("models_cic", "supervised_xgb_unsw.joblib")
 COLUMNS_PATH = os.path.join("data", "unsw_model_columns.joblib")
 
 model = joblib.load(MODEL_PATH)

@@ -131,3 +131,7 @@ async def upload_logs(file: UploadFile = File(...)):
 @app.get("/alerts", response_model=List[AlertOut])
 def get_alerts():
     return ALERTS_MEMORY
+
+@app.get("/")
+def root():
+    return {"message": "AI Threat Detection Backend is running 🚀"}
