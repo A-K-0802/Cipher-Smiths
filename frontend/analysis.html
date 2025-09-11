@@ -25,6 +25,35 @@
       <input type="date" class="form-control form-control-sm">
     </header>
 
+    <div class="box" id="uploadBox">
+        <h5 class="section-title">Upload Network Logs</h5>
+    <div style="display:flex; gap:12px; align-items:center;">
+    <input type="file" id="fileInput" accept=".csv">
+    <button id="analyzeBtn" class="btn">Analyze Logs</button>
+    <div id="uploadStatus" style="margin-left:12px;"></div>
+  </div>
+
+  <div style="margin-top:14px;">
+    <h5 class="section-title">Analysis Results</h5>
+    <div id="resultsSummary" style="margin-bottom:8px;"></div>
+    <div id="resultsTable" style="overflow:auto; max-height:300px;"></div>
+  </div>
+</div>
+
+<div class="box">
+  <h5 class="section-title">Upload Network Logs</h5>
+  <input type="file" id="fileInput" accept=".csv">
+  <button id="analyzeBtn" class="btn">Analyze Logs</button>
+  <div id="uploadStatus"></div>
+</div>
+
+<!-- 🔹 Place your Analysis Results block here -->
+<div class="box">
+  <h2 class="section-title">Analysis Results</h2>
+  <div id="resultsTable"></div>
+</div>
+
+
     <div class="row mb-4">
       <div class="col-md-6 box"><h5 class="section-title">Threat Categories</h5><canvas id="pieChart"></canvas></div>
       <div class="col-md-6 box"><h5 class="section-title">Top Attack Sources</h5><canvas id="barChart"></canvas></div>

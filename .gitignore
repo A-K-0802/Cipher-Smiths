@@ -1,1 +1,3 @@
 MachineLearningCSV/
+_pycache_
+.env
