@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Threat Dashboard - Monitoring</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="logo">⚡</div>
+    <div class="menu">
+      <a href="index.html" class="menu-btn">🏠</a>
+      <a href="analysis.html" class="menu-btn">📊</a>
+      <a href="monitoring.html" class="menu-btn active">📡</a>
+      <a href="settings.html" class="menu-btn">⚙️</a>
+      <a href="security.html" class="menu-btn">🛡️</a>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="title">Monitoring</h2>
+      <input type="date" class="form-control form-control-sm">
+    </header>
+
+    <div class="row mb-4">
+      <div class="col-md-8 box"><h5 class="section-title">Live Logs</h5>
+        <table class="table table-dark table-sm">
+          <thead><tr><th>Time</th><th>Event</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>12:01</td><td>Login Attempt</td><td class="text-danger">Failed</td></tr>
+            <tr><td>12:03</td><td>Port Scan</td><td class="text-warning">Detected</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4 box"><h5 class="section-title">Activity Trend</h5><canvas id="miniChart"></canvas></div>
+    </div>
+
+    <div class="row">
+      <div class="col box border-red">
+        <h5 class="section-title">Anomalies</h5>
+        <p>🔥 Multiple failed logins from IP 45.23.x.x</p>
+        <p>🔥 Suspicious outbound traffic detected</p>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
